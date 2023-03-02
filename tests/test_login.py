@@ -22,3 +22,4 @@ class TestLoginUI:
         actual_header = driver.find_element(By.XPATH, "//h5[text()='Login']").text
         assert_that("Login").is_equal_to(actual_header)
 
+
