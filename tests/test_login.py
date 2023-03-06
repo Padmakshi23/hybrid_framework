@@ -3,9 +3,7 @@ from selenium import webdriver
 from assertpy import assert_that
 from selenium.webdriver.common.by import By
 
-
-class TestLogin:
-
+class WebDriverWrapper:
     @pytest.fixture(scope="function", autouse=True)
     def setup(self):
         self.driver = webdriver.Chrome()
@@ -14,6 +12,9 @@ class TestLogin:
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
         yield
         self.driver.quit()
+
+
+class TestLogin(WebDriverWrapper):
 
     def test_valid_login(self):
         self.driver.find_element(By.NAME, "username").send_keys("Admin")
@@ -23,16 +24,7 @@ class TestLogin:
         assert_that("Dashboard").is_equal_to(actual_text)
 
 
-class TestLoginUI:
-    @pytest.fixture(scope="function", autouse=True)
-    def setup(self):
-        self.driver = webdriver.Chrome()
-        self.driver.maximize_window()
-        self.driver.implicitly_wait(20)
-        self.driver.get("https://opensource-demo.orangehrmlive.com/")
-        yield
-        self.driver.quit()
-
+class TestLoginUI(WebDriverWrapper):
     def test_title(self):
         actual_title = self.driver.title
         # assert actual_title == "OrangeHRM"
