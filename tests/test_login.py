@@ -18,7 +18,8 @@ class TestLogin(WebDriverWrapper):
         self.driver.find_element(By.NAME, "password").send_keys("admin123")
         self.driver.find_element(By.XPATH, "//button[normalize-space()='Login']").click()
         actual_error = self.driver.find_element(By.XPATH, "//p[text()='Invalid credentials']").text
-        print(actual_error)
+       # print(actual_error)
+        assert_that("Invalid credentials").is_equal_to(actual_error)
 
 
 class TestLoginUI(WebDriverWrapper):
