@@ -42,3 +42,9 @@ for i in df.index:
 print(list)
 
 print(df.values.tolist())
+
+print("-" * 10)
+
+df = pandas.read_excel(io="../test_data/orange_test_data.xlsx", sheet_name="test_add_valid_employee")
+
+print(df)
