@@ -13,11 +13,13 @@ class WebDriverWrapper:
 
         if browser_name == "edge":
             self.driver = webdriver.Edge()
-        elif browser_name == "ff":
-            self.driver = webdriver.Firefox()
-        else:
+        elif browser_name == "ch":
+            opt = webdriver.ChromeOptions()
+            opt.add_argument("start-maximized")
             self.driver = webdriver.Chrome()
-        self.driver = webdriver.Chrome()
+        else:
+            self.driver = webdriver.Firefox()
+        #self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(20)
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
